@@ -50,14 +50,18 @@ function draw() {
   if (keyWentDown("space")){
     spawnBullet()
   }
-  if(mouseX<810&&mouseX>716&&mouseY>296&&mouseY<388){
+  cool.visible=false
+  if(mouseX<810 && mouseX>716 && mouseY>296 && mouseY<388){
     mortar.pointTo(mouseX,mouseY)
+    cool.x=mouseX
+    cool.y=mouseY
     
   }
-  cool.rotateToDirection=true
-  cool.rotation=cool.rotation+5
-  cool.x=mortar.x-10
-  cool.y=mortar.y- 10
+
+ 
+  
+ 
+
   
    for (var i = 0; i < bulletGroup.length; i++) {
     if (bulletGroup.get(i).isTouching(floatingObjectGroup)) {
@@ -65,14 +69,15 @@ function draw() {
         floatingObjectGroup.destroyEach()
     }
     
-}
-  
+}  
+
   drawSprites();
+
 }
 
 function spawnBullet(){
 
-  var bullet = createSprite(mortar.x,mortar.y,17.5,17.5)
+  var bullet = createSprite(cool.x,cool.y,17.5,17.5)
   bullet.addImage("bulletImage",bulletImage)
   bullet.debug=true
   bullet.setCollider("circle",-10,15,7.5)
